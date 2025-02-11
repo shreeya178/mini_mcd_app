@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Admin Panel</h2>
+    <form method="POST">
+        <label for="name">Item Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01" required>
+        <button type="submit">Add Item</button>
+    </form>
+    <h3>Menu Items</h3>
+    <ul>
+        {% for item in items %}
+            <li>
+                {{ item[1] }} - ${{ item[2] }}
+                <a href="{{ url_for('remove_item', item_id=item[0]) }}">Remove</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
